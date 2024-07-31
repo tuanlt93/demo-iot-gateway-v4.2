@@ -1,0 +1,13 @@
+[Unit]
+Description=rostek-oee
+After=network-online.target
+[Service]
+Type=idle
+Restart=always
+RuntimeMaxSec=8h
+ExecStart=/home/pi/oee/rostek-iot-gateway-backend/venv/bin/python main.py
+WorkingDirectory=/home/pi/oee/rostek-iot-gateway-backend
+ExecStartPost=/bin/sleep 3
+User=pi
+[Install]
+WantedBy=multi-user.target
