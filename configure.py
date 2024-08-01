@@ -17,8 +17,8 @@ class STATUS(object):
     ERROR      = 3
 
 class MQTTCnf(object):
-    # BROKER              = "48.217.145.202"
-    BROKER              = "localhost"
+    BROKER              = "172.174.244.95"
+    # BROKER              = "localhost"
     PORT                = 1883
     MQTT_USERNAME       = "rostek"
     MQTT_PASSWORD       = "rostek2019"
@@ -38,7 +38,7 @@ class GeneralConfig(object):
     SENDINGRATE     = 2
     DEFAULTRATE     = 5
     DATAFILE        = "data.db"
-    ENTERPRISE      = "vnt"
+    ENTERPRISE      = "etek"
     ACTUALRATE      = 5
     LIMITRECORDS    = 50000
     UPTIME_RATE     = 5
@@ -46,7 +46,7 @@ class GeneralConfig(object):
     ACTIVE_READ_OTHER = False
     VERSION         = "v31"
     # BASE_URL        = "http://192.168.1.48"
-    BASE_URL        = "http://48.217.145.202"
+    BASE_URL        = "http://172.174.244.95"
     SYNC_MACHINE_URL    = f"{BASE_URL}:5100/sync/machine"
     SYNC_PRODUCTION_URL = f"{BASE_URL}:5100/sync/production"
     SYNC_DOWNTIME_URL   = f"{BASE_URL}:5100/sync/downtime"

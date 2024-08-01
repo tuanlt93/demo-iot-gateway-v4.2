@@ -17,12 +17,12 @@ def map_data_plc(deviceId, registerData):
     # ng              = int(registerData[4])
     # gap             = int(registerData[6])
     
-    status          = int(registerData[0])
-    actual          = int(registerData[6])
-    ng              = int(registerData[2])
-    changeProduct   = int(registerData[1])
-    gap             = int(registerData[4])
-    test_qty        = int(registerData[8])
+    status          = 0
+    actual          = 0
+    ng              = 0
+    changeProduct   = 0
+    gap             = 0
+    test_qty        = 0
     return [
         status,
         actual,

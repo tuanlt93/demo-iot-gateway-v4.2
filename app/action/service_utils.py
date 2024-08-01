@@ -45,13 +45,13 @@ def send_message(client):
                 raise Exception("-> Error publish to cloud")
             
         if data_electrical_key:
-            status = client.publish(topic, json.dumps(data_electrical_key))
+            status = client.publish(topic_electic, json.dumps(data_electrical_key))
             logging.info(status)
             if status[0] != 0:
                 raise Exception("-> Error publish to cloud")
             
         if data_machine_state_key:
-            status = client.publish(topic, json.dumps(data_machine_state_key))
+            status = client.publish(topic_machine_state, json.dumps(data_machine_state_key))
             logging.info(status)
             if status[0] != 0:
                 raise Exception("-> Error publish to cloud")

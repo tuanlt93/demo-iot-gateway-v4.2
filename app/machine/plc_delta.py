@@ -78,6 +78,7 @@ class DELTA_SA2():
                 self.deviceData[deviceId]["status"]             = STATUS.DISCONNECT
                 self.deviceData[deviceId]["actual"]             = 0
                 self.deviceData[deviceId]["ng"]                 = 0
+                self.deviceData[deviceId]["gap"]                 = 0
                 self.deviceData[deviceId]["changeProduct"]      = 0
                 self.deviceData[deviceId]["lastChangeStatus"]   = timeNow
                 self.deviceData[deviceId]["lastOtherTime"]      = timeNow
@@ -381,7 +382,7 @@ class DELTA_SA2():
             self.productionData[deviceId]["test_qty"] = 0
             
             self.save_production_data(deviceId, self.productionData[deviceId])
-        elif self.deviceData[deviceId]['gap'] != gap:
+        elif self.deviceData[deviceId]["gap"] != gap:
             self.productionData[deviceId]["gap"] = gap
             self.save_production_data(deviceId, self.productionData[deviceId])
         else:
@@ -450,8 +451,7 @@ class DELTA_SA2():
 
         machine_state_data = {
             "status"    : registerData[3],
-            "error"     : registerData[4]
-
+            "error_id"     : registerData[4]
         }
         redisKey = f"{deviceId}/uptime"
         redis_electrical_key = f"{deviceId}/electrical"
