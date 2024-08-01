@@ -10,7 +10,7 @@ from pymodbus.payload import BinaryPayloadDecoder
 from pymodbus.constants import Endian
 import struct
 
-from hmi.hmi import PROD_STATE, MACH_STATE
+# from hmi.hmi import PROD_STATE, MACH_STATE
 
 class DELTA_SA2():
     def __init__(self,redisClient, configure):
@@ -69,8 +69,8 @@ class DELTA_SA2():
             self.register_data[deviceId] = {
                 "connect": False,
                 "production": 0,
-                "mach_state": MACH_STATE.STOP,
-                "prod_state": PROD_STATE.STOP,
+                # "mach_state": MACH_STATE.STOP,
+                # "prod_state": PROD_STATE.STOP,
             }
 
             if "maxActual" not in deviceData:
@@ -238,7 +238,7 @@ class DELTA_SA2():
             count = 2 if data_type in ['int', 'word'] else 4
 
             # Đọc thanh ghi
-            address = offset // 2
+            address = offset
             result = self.__modbusMaster.read_holding_registers(address, count, unit= 1)
 
             if result.isError():
@@ -248,12 +248,13 @@ class DELTA_SA2():
 
             # Giải mã dữ liệu dựa trên loại dữ liệu
             if data_type == 'real':
-                decoder = BinaryPayloadDecoder.fromRegisters(result.registers, byteorder=Endian.Big, wordorder=Endian.Little)
-                results.append(decoder.decode_32bit_float())
+                registers_bytes = struct.pack('>HHHH', *result.registers)
+                real_value, = struct.unpack('>f', registers_bytes[:4])
+                results.append(real_value)
             elif data_type == 'int':
-                results.append(result.registers[0]) # Giả sử là 16-bit integer
+                results.append(result.registers[0]) # Thanh ghi là 16-bit integer
             elif data_type == 'word':
-                results.append(result.registers[0])  # Giả sử là 16-bit word
+                results.append(result.registers[0])  # Thanh ghi là 16-bit word
             elif data_type == 'dint':
                 # Đọc 32-bit signed integer từ hai thanh ghi
                 result_dint = struct.unpack('>i', struct.pack('>HH', result.registers[0], result.registers[1]))[0]
@@ -277,6 +278,10 @@ class DELTA_SA2():
         # else:
         #     self.__redisClient.hset(f"/device/V2/{deviceId}/raw", "is_connected", 1)
         # registerData = r.registers
+
+        # print(registerData)
+
+
         registerData = self.__read_modbus_datablock_siemen(device= device["UID"])
         print(registerData)
         timeNow = round(VnTimeStamps.now())
@@ -445,11 +450,14 @@ class DELTA_SA2():
 
         electrical_data = {
             "device_id" : deviceId,
+            "power_consumption" : registerData[15],
             "voltage"   : registerData[0],
-            "ampere"    : registerData[1]
+            "frequency" : 50.0,
+            "ampere"    : registerData[1],
+            "unbalanced": 120
 
         }
-
+        
         machine_state_data = {
             "device_id" : deviceId,
             "status"    : registerData[3],

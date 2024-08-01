@@ -58,7 +58,7 @@ class FLASK(object):
 
 deltaConfigure = {
     "METHOD"        :  "rtu",
-    "HOST"          :  "127.0.0.1",
+    "HOST"          :  "192.168.0.1",
     # "PORT"          :  "/dev/ttyAMA1",
     "PORT"          :  "502",
     "TIMEOUT"       :  1,
@@ -83,9 +83,9 @@ deltaConfigure = {
         #     "ADDRESS"   : 4096 + 450,
         # },
         {
-            "ID"        : "ETEK-M01",
+            "ID"        : "ETEK-01",
             "UID"       : 1,
-            "COUNT"     : 40,
+            "COUNT"     : 50,
             "ADDRESS"   : 0,
         }
 
@@ -94,18 +94,19 @@ deltaConfigure = {
 
 registers = {
     'DB100.DBD0': ('real', 0),
-    'DB100.DBD4': ('real', 4),
-    'DB100.DBW8': ('int', 8),
-    'DB100.DBW10': ('int', 10),
-    'DB100.DBW12': ('word', 12),
-    'DB100.DBW14': ('int', 14),
-    'DB100.DBW16': ('int', 16),
-    'DB100.DBW18': ('int', 18),
-    'DB100.DBD20': ('dint', 20),
-    'DB100.DBW24': ('int', 24),
-    'DB100.DBW26': ('int', 26),
-    'DB100.DBW28': ('dint', 28),
-    'DB100.DBD32': ('dint', 32),
-    'DB100.DBW36': ('int', 36),
-    'DB100.DBD38': ('dint', 38),
+    'DB100.DBD4': ('real', 2),
+    'DB100.DBW8': ('int', 4),
+    'DB100.DBW10': ('int', 5),
+    'DB100.DBW12': ('word', 6),
+    'DB100.DBW14': ('int', 7),
+    'DB100.DBW16': ('int', 8),
+    'DB100.DBW18': ('int', 9),
+    'DB100.DBD20': ('dint', 10),
+    'DB100.DBW24': ('int', 12),
+    'DB100.DBW26': ('int', 13),
+    'DB100.DBW28': ('dint', 14),
+    'DB100.DBD32': ('dint', 16),
+    'DB100.DBW36': ('int', 18),
+    'DB100.DBD38': ('dint', 19),
+    'DB100.DBD42': ('real', 21),
 }
