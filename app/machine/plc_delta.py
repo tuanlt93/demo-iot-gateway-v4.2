@@ -444,12 +444,14 @@ class DELTA_SA2():
         }
 
         electrical_data = {
+            "device_id" : deviceId,
             "voltage"   : registerData[0],
             "ampere"    : registerData[1]
 
         }
 
         machine_state_data = {
+            "device_id" : deviceId,
             "status"    : registerData[3],
             "error_id"     : registerData[4]
         }
