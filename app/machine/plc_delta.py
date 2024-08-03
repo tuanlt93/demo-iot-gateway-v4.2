@@ -283,7 +283,7 @@ class DELTA_SA2():
 
 
         registerData = self.__read_modbus_datablock_siemen(device= device["UID"])
-        print(registerData)
+        # print(registerData)
         timeNow = round(VnTimeStamps.now())
     
         [raw_status, actual ,changeover, ng , gap, test_qty] = map_data_modbus(deviceId, registerData)

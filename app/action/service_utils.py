@@ -30,6 +30,7 @@ def send_message(client):
         redis_machine_state_key = f"{deviceId}/machine_state"
 
         data = redisClient.hgetall(redisKey)
+        # print(data)
         data_electrical_key = redisClient.hgetall(redis_electrical_key)
         data_machine_state_key = redisClient.hgetall(redis_machine_state_key)
         
@@ -179,7 +180,7 @@ def synchronize_production_data():
                     }
                     
                     payload.append(sendData)
-                    print(sendData)
+                    # print(sendData)
                 
                 response = requests.post(GeneralConfig.SYNC_PRODUCTION_URL, json=payload)
             

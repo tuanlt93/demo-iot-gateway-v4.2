@@ -34,8 +34,8 @@ class RedisCnf(object):
     HUMTEMPTOPIC= "/humtemp" 
 
 class GeneralConfig(object):
-    READINGRATE     = 3
-    SENDINGRATE     = 2
+    READINGRATE     = 1
+    SENDINGRATE     = 1
     DEFAULTRATE     = 5
     DATAFILE        = "data.db"
     ENTERPRISE      = "etek"
@@ -109,4 +109,30 @@ registers = {
     'DB100.DBW36': ('int', 18),
     'DB100.DBD38': ('dint', 19),
     'DB100.DBD42': ('real', 21),
+
+    # trục 1
+    'DB100.DBD46': ('real', 23),
+    'DB100.DBD50': ('real', 25),
+
+    # trục 2
+    'DB100.DBD54': ('real', 27),
+    'DB100.DBD58': ('real', 29),
+
+    # trục 3
+    'DB100.DBD62': ('real', 31),
+    'DB100.DBD66': ('real', 33),
+
+    # trục 4
+    'DB100.DBD70': ('real', 35),
+    'DB100.DBD74': ('real', 37),
+
+    # trục 5
+    'DB100.DBD78': ('real', 39),
+    'DB100.DBD82': ('real', 41),
+
+    # trục 6
+    'DB100.DBD86': ('real', 43),
+    'DB100.DBD90': ('real', 45),
+
+
 }
